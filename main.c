@@ -5,30 +5,30 @@
 
 
 int shortUrl() {
-//    int sequence = 916132907;
+//    int sequence = 916132607;
     char *base62 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-
-
-    for(int sequence=916132832; sequence<916132842; sequence++) {
-        char base62_encode[255] ="http://shorturl/";
-        char tmp [10] = {0,};
-        int i =0;
-        int j= 0;
+    for(int num = 916132607; num < 916132617; num ++) {
+        int sequence = num;
+        char base62_encode[255] = "http://shorturl/";
+        char checkSum[2] = {0,};
+        char tmp[10] = {0,};
+        int i, j, k, t = 0;
         i = sequence % 62;
         j = sequence / 62;
+        checkSum[0] = base62[base62[i] / 62];
+        checkSum[1] = base62[base62[i] % 62];
+        do {
+            k = sequence % 62;
+            tmp[t] = base62[k];
+            sequence /= 62;
+            t++;
 
-
-        char resultCheckSum = i ^ j;
-        if (base62[resultCheckSum] > 62) {
-            tmp[0] = base62[base62[resultCheckSum] / 62];
-            tmp[1] = base62[base62[resultCheckSum] % 62];
-        }
-
-        tmp[2] = base62[resultCheckSum];
+        } while (sequence > 0);
         strcat(base62_encode, tmp);
-        printf("%s \n", base62_encode);
+
+        printf("%s .... %d\n", base62_encode);
     }
+
     return 0;
 }
 
