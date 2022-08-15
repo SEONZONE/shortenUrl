@@ -3,37 +3,34 @@
 #include <stdlib.h>
 #include <time.h>
 
+const char *base62 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-int shortUrl() {
-//    int sequence = 916132607;
-    char *base62 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    for(int num = 916132607; num < 916132617; num ++) {
-        int sequence = num;
-        char base62_encode[255] = "http://shorturl/";
-        char checkSum[2] = {0,};
+ char *encode(int sequence) {
+        static char base62_encode[255] = "https://seonzone/";
         char tmp[10] = {0,};
-        int i, j, k, t = 0;
-        i = sequence % 62;
-        j = sequence / 62;
-        checkSum[0] = base62[base62[i] / 62];
-        checkSum[1] = base62[base62[i] % 62];
+        int i ,t= 0;
         do {
-            k = sequence % 62;
-            tmp[t] = base62[k];
+            i = sequence % 62;
+            tmp[t] = base62[i];
             sequence /= 62;
             t++;
-
         } while (sequence > 0);
         strcat(base62_encode, tmp);
-
-        printf("%s .... %d\n", base62_encode);
-    }
-
-    return 0;
+    return base62_encode;
 }
 
+int *decode(char *rsltEncode) {
+     static int decode;
+     for(int i=0; i<rsltEncode.length; i++) {
+
+     }
+     return decode;
+ }
+
 int main() {
-    shortUrl();
-//    charToNumber();
+    char *rsltEcode;
+    rsltEcode = encode(1000);
+    printf("%s \n", rsltEcode);
+    decode(rsltEcode);
     return 0;
 }
